@@ -23,10 +23,24 @@ class RemoveDuplicates:
 
         return arr[:i]
 
+    def removeDuplicatesT_N_S_1(self, arr):
+        i = 0
+        j = 1
+        while j < len(arr):
+            if arr[i] != arr[j]:
+                 arr[i+1] = arr[j]
+                 i += 1
+            
+            j += 1
+        
+        return arr[:i+1]
 
 
     
 if __name__ == "__main__":
     arr = [1, 1, 1, 2, 3, 3, 4, 5, 5]
     print(RemoveDuplicates().removeDuplicatesT_N_S_N(arr))
+    arr = [1, 1, 1, 2, 3, 3, 4, 5, 5]
     print(RemoveDuplicates().removeDuplicatesT_N_S_N_w_Set(arr))
+    arr = [1, 1, 1, 2, 3, 3, 4, 5, 5]
+    print(RemoveDuplicates().removeDuplicatesT_N_S_1(arr))
