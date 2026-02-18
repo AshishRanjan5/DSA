@@ -58,6 +58,13 @@ class OperationsOnArray:
                 thirdMaxEle = ele
         
         return thirdMaxEle
+    
+    def isSorted(self, arr):
+        for i in range(len(arr)-1):
+            if arr[i+1] < arr[i]:
+                return False
+        
+        return True
 
 
     
@@ -73,3 +80,6 @@ if __name__ == "__main__":
     print(OperationsOnArray().thirdLargestElement(arr))
     print(OperationsOnArray().minElement(arr))
     print(OperationsOnArray().secondSmallestElement(arr))
+    arr2 = [1,2,3,4,5]
+    print(OperationsOnArray().isSorted(arr))
+    print(OperationsOnArray().isSorted(arr2))
