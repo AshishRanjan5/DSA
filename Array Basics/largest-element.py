@@ -65,10 +65,15 @@ class OperationsOnArray:
                 return False
         
         return True
-
-
     
+    def removeDuplicates(self, arr):
+        res = [arr[0]]
 
+        for i in range(1, len(arr)):
+            if arr[i] != arr[i-1]:
+                res.append(arr[i])
+        
+        return res
                 
 
 
@@ -83,3 +88,6 @@ if __name__ == "__main__":
     arr2 = [1,2,3,4,5]
     print(OperationsOnArray().isSorted(arr))
     print(OperationsOnArray().isSorted(arr2))
+
+    arr3 = [1, 1, 1, 2, 3, 3, 4, 5, 5]
+    print(OperationsOnArray().removeDuplicates(arr3))
