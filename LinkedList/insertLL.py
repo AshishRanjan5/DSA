@@ -41,12 +41,6 @@ class LinkedList:
             temp = temp.next
         
         return False
-    
-    def display(self) -> None:
-        temp = self.head
-        while temp is not None:
-            print(temp.data)
-            temp=temp.next
 
     def insert(self, data, position) -> None: # zero based indexing
         if position < 0:
@@ -70,6 +64,12 @@ class LinkedList:
         
         new_node.next = temp.next
         temp.next = new_node
+
+    def display(self) -> None:
+        temp = self.head
+        while temp is not None:
+            print(temp.data)
+            temp=temp.next
 
 
 if __name__ == "__main__":
