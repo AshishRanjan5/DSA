@@ -35,15 +35,58 @@ class LinkedList:
         if self.head is None:
             self.head = new_node
             return
+        
         temp = self.head
-        while temp is not None:
+        while temp.next is not None:
             temp = temp.next
         
         temp.next = new_node
     
-    def insert(self, position, data):
-        pass
-    
+    def insert(self, data, position):
+        if position == 0:
+            return
+        new_node = LinkedListNode(data)
+        temp = self.head
+        current_position = 0
+        
+        if position == 1:
+            new_node.next = self.head
+            self.head = new_node
+            return
+        
+        while current_position < position-1:
+            temp = temp.next
+            current_position += 1
+        
+        new_node.next = temp.next
+        temp.next = new_node
+
+    def removeEveryKthNode(self, K):
+        
+        if self.head is None or K <= 0:
+            return self.head
+
+        curr = self.head
+        prev = None
+
+        count = 0
+
+        while curr is not None:
+            count += 1
+
+            
+            if count % K == 0:
+            
+                
+                if prev is not None:
+                    prev.next = curr.next
+                else:
+                    self.head = curr.next
+            else:
+                prev = curr
+
+            curr = curr.next
+
     def display(self):
         temp = self.head
         while temp:
@@ -61,12 +104,9 @@ if __name__ == "__main__":
     ll.display()
     print(ll.length())
     print(ll.search(30))
-    ll.insert(40, 2) # insertion somewhere in the middle
-    ll.insert(70, 0) # insertion in starting index
-    ll.insert(50, 4) # insertion at the end of the index
-    print("Before delete")
+    ll.insert(40, 2)
+    ll.insert(70, 0)
+    ll.insert(50, 4)
     ll.display()
-    ll.delete(3)
-    print("After delete")
+    ll.removeEveryKthNode(2)
     ll.display()
-    
