@@ -64,7 +64,7 @@ class LinkedList:
     def removeEveryKthNode(self, K):
         
         if self.head is None or K <= 0:
-            return self.head
+            return
 
         curr = self.head
         prev = None
