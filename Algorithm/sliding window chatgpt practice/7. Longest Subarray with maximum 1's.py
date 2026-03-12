@@ -54,11 +54,31 @@ class MinimumSubarraySumGreaterThanTarget:
             max_count = max(max_count, right - left + 1)
         
         return max_count
+    
+    def optimalSolutionFixedSpace(self, nums, k):
+        N = len(nums)
+        max_count = float('-inf')
 
+        left = 0
+        zero_count = 0
+
+        for right in range(N):
+            if nums[right] == 0:
+                zero_count += 1
+
+            while zero_count > k:
+                if nums[left] == 0:
+                    zero_count -= 1
+                left += 1
+                
+            
+            max_count = max(max_count, right - left + 1)
+        
+        return max_count
 
 
 if __name__ == "__main__":
     nums = [1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0]
     k = 2
     sol = MinimumSubarraySumGreaterThanTarget()
-    print(sol.optimalSolution(nums, k))
+    print(sol.optimalSolutionFixedSpace(nums, k))
