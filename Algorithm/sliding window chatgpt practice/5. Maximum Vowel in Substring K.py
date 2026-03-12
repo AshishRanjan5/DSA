@@ -28,7 +28,7 @@ s consists of lowercase English letters.
 1 <= k <= s.length
 """
 
-class LongestRespeatingSubstring:
+class MaximumVowelSubstringK:
     def bruteForce(self, s, k):
         N = len(s)
         vowels = set({'a', 'e', 'i', 'o', 'u'})
@@ -71,7 +71,7 @@ class LongestRespeatingSubstring:
 if __name__ == "__main__":
     s = "abciiidef"
     k = 3
-    sol = LongestRespeatingSubstring()
+    sol = MaximumVowelSubstringK()
     print(sol.optimalSolution(s, k))
 
 
