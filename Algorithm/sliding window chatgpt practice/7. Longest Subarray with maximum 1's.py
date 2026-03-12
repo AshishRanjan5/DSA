@@ -32,7 +32,7 @@ class MinimumSubarraySumGreaterThanTarget:
                 char_freq[nums[j]] = char_freq.get(nums[j], 0) + 1
                 curr_count += 1
             
-            if char_freq[0] <= k:
+            if char_freq.get(0, 0) <= k:
                 max_count = max(max_count, curr_count)
         
         return max_count
