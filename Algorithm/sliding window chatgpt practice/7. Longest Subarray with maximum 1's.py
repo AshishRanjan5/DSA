@@ -39,11 +39,26 @@ class MinimumSubarraySumGreaterThanTarget:
 
     def optimalSolution(self, nums, k):
         N = len(nums)
-        pass
+        max_count = float('-inf')
+
+        left = 0
+        char_freq = {}
+
+        for right in range(N):
+            char_freq[nums[right]] = char_freq.get(nums[right], 0) + 1
+
+            while char_freq.get(0, 0) > k:
+                char_freq[nums[left]] -= 1
+                left += 1
+            
+            max_count = max(max_count, right - left + 1)
+        
+        return max_count
+
 
 
 if __name__ == "__main__":
     nums = [1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0]
     k = 2
     sol = MinimumSubarraySumGreaterThanTarget()
-    print(sol.bruteForce(nums, k))
+    print(sol.optimalSolution(nums, k))
