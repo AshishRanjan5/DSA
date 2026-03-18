@@ -37,6 +37,18 @@ class Graph:
                     visited.add(neighbour)
                     queue.append(neighbour)
     
+    def dfs(self, vertex, visited=None):
+        if visited is None:
+            visited = set()
+        
+        visited.add(vertex)
+        print(vertex)
+        
+        for neighbour in self.graph[vertex]:
+            if neighbour not in visited:
+                self.dfs(neighbour, visited)
+
+    
 
 if __name__ == "__main__":
     g = Graph()
@@ -44,4 +56,8 @@ if __name__ == "__main__":
     g.add_edge('A', 'C')
     g.add_edge('B', 'D')
     g.add_edge('C', 'E')
+    print("BFS\n")
     g.bfs('A')
+
+    print("DFS\n")
+    g.dfs('A')
