@@ -47,17 +47,46 @@ class Graph:
         for neighbour in self.graph[vertex]:
             if neighbour not in visited:
                 self.dfs(neighbour, visited)
-
     
+    def dfs_iterative(self, start_vertex):
+        visited = set()
+        stack = deque()
+
+        visited.add(start_vertex)
+        stack.append(start_vertex)
+
+        while stack:
+            curr_vertex = stack.pop()
+            print(curr_vertex)
+            for neighbour in self.graph[curr_vertex]:
+                if neighbour not in visited:
+                    visited.add(neighbour)
+                    stack.append(neighbour)
+
+    def build_graph(self, edges):
+        for edge in edges:
+            vertex1 = edge[0]
+            vertex2 = edge[1]
+            if vertex1 not in self.graph:
+                self.graph[vertex1] = []
+        
+            if vertex2 not in self.graph:
+                self.graph[vertex2] = []
+            
+            self.graph[vertex1].append(vertex2)
+            self.graph[vertex2].append(vertex1)
 
 if __name__ == "__main__":
     g = Graph()
-    g.add_edge('A', 'B')
-    g.add_edge('A', 'C')
-    g.add_edge('B', 'D')
-    g.add_edge('C', 'E')
+    
+    edges = [['A', 'B'], ['A', 'C'], ['B', 'D'], ['C', 'E']]
+    g.build_graph(edges)
+    
     print("BFS\n")
     g.bfs('A')
 
     print("DFS\n")
     g.dfs('A')
+
+    print("DFS Iterative using Stack\n")
+    g.dfs_iterative('A')
