@@ -74,7 +74,25 @@ class Graph:
                 if self.matrix[curr_vertex][neighbour] == 1 and neighbour not in visited:
                     visited.add(neighbour)
                     stack.append(neighbour)
+    
+    def dfs_recursively(self, vertex, visited=None):
+        if visited is None:
+            visited = set()
         
+        visited.add(vertex)
+        print(vertex)
+
+        for neighbour in range(self.size):
+            if self.matrix[vertex][neighbour] == 1 and neighbour not in visited:
+                    self.dfs_recursively(neighbour, visited)
+
 
 if __name__ == "__main__":
     g = Graph()
+
+    edges = [[0,1], [1,2]]
+
+    g.build_graph_optimally(edges)
+
+    g.bfs(1)
+    g.dfs(1)
