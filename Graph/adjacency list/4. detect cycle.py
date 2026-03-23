@@ -61,21 +61,83 @@ class Graph:
                     visited.add(neighbour)
                     stack.append(neighbour)
     
-    def detectCycle(self, vertex, parent=None, visited=None):
-        if visited is None:
-            visited = set()
-        
+    def detectCycle(self):
+        visited = set()
+
+        for node in self.graph:
+            if node not in visited:
+                if self._dfs(node, None, visited):
+                    return True
+        return False
+
+
+    def _dfs(self, vertex, parent, visited):
         visited.add(vertex)
 
         for neighbour in self.graph[vertex]:
             if neighbour not in visited:
-                if self.detectCycle(neighbour, vertex, visited):
+                if self._dfs(neighbour, vertex, visited):
                     return True
-            
             elif neighbour != parent:
                 return True
 
         return False
+    
+    def detectCycleBFS(self):
+        visited = set()
+
+        for start in self.graph:
+            if start not in visited:
+                if self._bfs_cycle(start, visited):
+                    return True
+        return False
+
+
+    def _bfs_cycle(self, start, visited):
+        queue = deque()
+        queue.append((start, None))
+        visited.add(start)
+
+        while queue:
+            node, parent = queue.popleft()
+
+            for neighbour in self.graph[node]:
+                if neighbour not in visited:
+                    visited.add(neighbour)
+                    queue.append((neighbour, node))
+                elif neighbour != parent:
+                    return True
+
+        return False
+
+
+    def detectCycleDFSIterative(self):
+        visited = set()
+
+        for start in self.graph:
+            if start not in visited:
+                if self._dfs_iterative_cycle(start, visited):
+                    return True
+        return False
+
+
+    def _dfs_iterative_cycle(self, start, visited):
+        stack = deque()
+        stack.append((start, None))
+        visited.add(start)
+
+        while stack:
+            node, parent = stack.pop()
+
+            for neighbour in self.graph[node]:
+                if neighbour not in visited:
+                    visited.add(neighbour)
+                    stack.append((neighbour, node))
+                elif neighbour != parent:
+                    return True
+
+        return False
+
 
 if __name__ == "__main__":
     g = Graph()
