@@ -58,6 +58,7 @@ class Graph:
         while stack:
             curr_vertex = stack.pop()
             print(curr_vertex)
+            
             for neighbour in self.graph[curr_vertex]:
                 if neighbour not in visited:
                     visited.add(neighbour)
@@ -81,7 +82,7 @@ if __name__ == "__main__":
     
     edges = [['A', 'B'], ['A', 'C'], ['B', 'D'], ['C', 'E']]
     g.build_graph(edges)
-    
+
     print("BFS\n")
     g.bfs('A')
 
